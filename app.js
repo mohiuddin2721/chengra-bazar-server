@@ -72,14 +72,31 @@ const productSchema = mongoose.Schema({
   }
 }, {
   timestamps: true
-})
+});
+
+// mongoose middleware for saving data: pre/post
+// productSchema.pre('save', function (next) {
+//   console.log('Before saving data');
+// take action here
+
+//   next();
+// })
+
+// productSchema.post('save', function (dox, next) {
+//   console.log('After saving data');
+// take action here
+
+//   next();
+// })
 
 // schema -> model -> query
-const Product = mongoose.model('Product', productSchema)
+const Product = mongoose.model('Product', productSchema);
 
 app.get('/', (req, res) => {
   res.send('Chengra_Bazar route is working! YaY');
 });
+
+
 
 // posting to database
 app.post('/api/v1/product', async (req, res, next) => {
@@ -103,6 +120,23 @@ app.post('/api/v1/product', async (req, res, next) => {
     res.status(400).json({
       status: 'fail',
       message: 'Data is not inserted',
+      error: error.message,
+    })
+  }
+})
+
+// get all product
+app.get('/api/v1/products', async (req, res, next) => {
+  try {
+    const products = await Product.find();
+    res.status(200).json({
+      status: 'success',
+      data: products,
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      message: "can't get the data",
       error: error.message,
     })
   }
