@@ -74,6 +74,38 @@ const productSchema = mongoose.Schema({
   timestamps: true
 });
 
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'Please provide your name'],
+    trim: true,
+    minLength: [4, 'Name must be at least 4 characters.'],
+    maxLength: [100, 'Name is too large. It must be at least 100 characters'],
+  },
+  country: {
+    type: String,
+    required: true,
+    trim: true,
+    minLength: [4, 'Name must be at least 4 characters.'],
+    maxLength: [50, 'Name is too large. It must be at least 50 characters'],
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: [true, 'Type the password']
+  },
+  age: {
+    type: Number,
+  },
+}, {
+  timestamps: true,
+});
+
+
 // mongoose middleware for saving data: pre/post
 // productSchema.pre('save', function (next) {
 //   console.log('Before saving data');
@@ -91,6 +123,7 @@ const productSchema = mongoose.Schema({
 
 // schema -> model -> query
 const Product = mongoose.model('Product', productSchema);
+const User = mongoose.model('User', userSchema);
 
 app.get('/', (req, res) => {
   res.send('Chengra_Bazar route is working! YaY');
@@ -128,7 +161,7 @@ app.post('/api/v1/product', async (req, res, next) => {
 // get all product
 app.get('/api/v1/products', async (req, res, next) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find({ _id: '645d2ac43573c32f8b64650b'});
     res.status(200).json({
       status: 'success',
       data: products,
