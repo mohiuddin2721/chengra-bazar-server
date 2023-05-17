@@ -1,8 +1,25 @@
-const { createProductsService } = require("../services/products.service")
+const { getCategoryService, createCategoryService } = require("../services/category.service");
+
+exports.getCategories = async (req, res, next) => {
+    try {
+        const products = await getCategoryService()
+
+        res.status(200).json({
+            status: 'success',
+            data: products,
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: "can't get the data",
+            error: error.message,
+        })
+    }
+}
 
 exports.createCategory = async (req, res, next) => {
     try {
-        const result = await createProductsService(req.body)
+        const result = await createCategoryService(req.body)
 
         res.status(200).json({
             status: 'success',
