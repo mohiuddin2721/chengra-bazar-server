@@ -14,5 +14,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/products', productRoute)
+app.use('/api/v1/category', categoryRoute)
 
 module.exports = app;
