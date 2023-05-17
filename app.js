@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-// middlewares
+// middleware
 app.use(cors());
 app.use(express.json());
 
 // route
 const productRoute = require('./routes/products.route');
+const categoryRoute = require('./routes/category.route');
+const usersRoute = require('./routes/users.route');
 
 app.get('/', (req, res) => {
   res.send('Chengra_Bazar route is working! YaY');
@@ -15,5 +17,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/products', productRoute)
 app.use('/api/v1/category', categoryRoute)
+app.use('/api/v1/users', usersRoute)
 
 module.exports = app;
