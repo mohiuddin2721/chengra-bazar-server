@@ -1,22 +1,34 @@
+const { match } = require("assert");
 const { getProductsService, createProductsService } = require("../services/products.service")
 
 
 exports.getProducts = async (req, res, next) => {
     try {
-        const filters = { ...req.query };
+        let filters = { ...req.query };
         // const excludeFields = ['categories', 'brand', 'rating', 'sort'];
         const excludeFields = ['sort', 'page', 'limit'];
         excludeFields.forEach(field => delete filters[field]);
         // console.log('Original objects:', req.query)
         // console.log('query Object:', filters)
 
+        // gt, gte, lt, lte
+        let filtersString = JSON.stringify(filters)
+        filtersString = filtersString.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
+        filters = (JSON.parse(filtersString))
+        // console.log(filters)
+        // console.log(req.query.search)
         const queries = {};
         if (req.query.sort) {
             const sortBy = req.query.sort.split(',').join(' ')
             queries.sortBy = sortBy;
-            console.log(sortBy)
+            // console.log(sortBy)
         }
-        
+        if (req.query.fields) {
+            const fields = req.query.fields.split(',').join(' ')
+            queries.fields = fields;
+            // console.log(fields)
+        }
+
         const products = await getProductsService(filters, queries)
 
         res.status(200).json({
@@ -55,5 +67,13 @@ exports.createProduct = async (req, res, next) => {
             message: 'Data is not inserted',
             error: error.message,
         })
+    }
+}
+
+exports.fileUpload = async (req, res) => {
+    try {
+        res.status(200).json(req.files)
+    } catch (error) {
+
     }
 }
