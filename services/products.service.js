@@ -15,7 +15,23 @@ exports.getProductsService = async (filters, queries) => {
 // .select()
 
 exports.createProductsService = async (data) => {
-    const product = await Product.create(data);
+    const productData = {
+        name: data.body.name,
+        quantity: data.body.quantity,
+        color: data.body.color,
+        unit: data.body.unit,
+        status: data.body.status,
+        categories: data.body.categories,
+        price: data.body.price,
+        brand: data.body.brand,
+        ratting: data.body.ratting,
+        description: data.body.description,
+        imageURL: await data.files?.map(file => file.path),
+        // imageUrl: await data.files,
+    };
+    const product = await Product.create(productData);
+    console.log("productData", productData)
+    console.log("data.files", data.files)
     return product;
 }
 

@@ -19,24 +19,25 @@ const productSchema = mongoose.Schema({
     required: true,
     min: [0, "Price can't be negative."],
   },
-  imageUrl: [{
-    type: String,
+  imageURL: [{
+    type: [String],
+    // type: Array,
     required: true,
-    validate: {
-      validator: (value) => {
-        if (!Array.isArray(value)) {
-          return false;
-        }
-        let isValid = true;
-        value.forEach(url => {
-          if (!validator.isURL(url)) {
-            isValid = false;
-          }
-        });
-        return isValid;
-      },
-      message: 'Please provide valid image urls'
-    }
+    // validate: {
+    //   validator: (value) => {
+    //     if (!Array.isArray(value)) {
+    //       return false;
+    //     }
+    //     let isValid = true;
+    //     value.forEach(url => {
+    //       if (!validator.isURL(url)) {
+    //         isValid = false;
+    //       }
+    //     });
+    //     return isValid;
+    //   },
+    //   message: 'Please provide valid image urls'
+    // }
   }],
   unit: {
     type: String,

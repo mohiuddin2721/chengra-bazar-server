@@ -54,8 +54,9 @@ exports.createProduct = async (req, res, next) => {
         // if (product.quantity === 0) {
         //     product.status = 'out-of-stock';
         // }
-        const result = await createProductsService(req.body)
-
+        // console.log(req.file)
+        const result = await createProductsService(req)
+        // console.log(req.files)
         res.status(200).json({
             status: 'success',
             message: 'Successfully data inserted',
@@ -73,6 +74,7 @@ exports.createProduct = async (req, res, next) => {
 exports.fileUpload = async (req, res) => {
     try {
         res.status(200).json(req.files)
+        console.log(req.files)
     } catch (error) {
 
     }
