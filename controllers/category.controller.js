@@ -19,8 +19,8 @@ exports.getCategories = async (req, res, next) => {
 
 exports.createCategory = async (req, res, next) => {
     try {
-        const result = await createCategoryService(req.body)
-
+        const result = await createCategoryService(req)
+        // console.log(result)
         res.status(200).json({
             status: 'success',
             message: 'Successfully data of category inserted',

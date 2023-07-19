@@ -6,6 +6,12 @@ exports.getCategoryService = async () => {
 }
 
 exports.createCategoryService = async (data) => {
-    const category = await Category.create(data);
+    const categoryData = {
+        ...data.body,
+        photo: data.file.path
+    }
+    // console.log(categoryData)
+    const category = await Category.create(categoryData);
+    // console.log("server", category)
     return category;
 }

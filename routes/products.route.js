@@ -9,7 +9,6 @@ const uploader = require('../middleware/uploader');
 router.route('/')
     .get(productController.getProducts)
     .post(uploader.array("image"), productController.createProduct)
-// .post(uploader.array("image"),productController.fileUpload)
 
 
 module.exports = router;
