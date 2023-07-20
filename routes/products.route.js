@@ -10,5 +10,8 @@ router.route('/')
     .get(productController.getProducts)
     .post(uploader.array("image"), productController.createProduct)
 
+router.route('/:id')
+    .get(productController.getProductsById)
+
 
 module.exports = router;

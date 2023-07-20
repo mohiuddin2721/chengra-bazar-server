@@ -2,6 +2,7 @@ const Product = require('../models/Product');
 
 exports.getProductsService = async (filters, queries) => {
     const products = await Product
+        .findById(id)
         .find(filters)
         .sort(queries.sortBy)
     const total = await Product.countDocuments(filters)
@@ -13,6 +14,11 @@ exports.getProductsService = async (filters, queries) => {
 // .skip()
 // .limit()
 // .select()
+
+exports.getProductByIdService = async (id) => {
+    const product = await Product.findById(id)
+    return product;
+}
 
 exports.createProductsService = async (data) => {
     const productData = {

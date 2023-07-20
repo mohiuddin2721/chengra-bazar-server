@@ -1,5 +1,5 @@
 const { match } = require("assert");
-const { getProductsService, createProductsService } = require("../services/products.service")
+const { getProductsService, createProductsService, getProductByIdService } = require("../services/products.service")
 
 
 exports.getProducts = async (req, res, next) => {
@@ -34,6 +34,25 @@ exports.getProducts = async (req, res, next) => {
         res.status(200).json({
             status: 'success',
             data: products,
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: "can't get the data",
+            error: error.message,
+        })
+    }
+}
+
+exports.getProductsById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        console.log(id)
+        const product = await getProductByIdService(id)
+        console.log(product)
+        res.status(200).json({
+            status: 'success',
+            data: product,
         })
     } catch (error) {
         res.status(400).json({
