@@ -20,5 +20,6 @@ app.get('/', (req, res) => {
 app.use('/api/v1/products', productRoute)
 app.use('/api/v1/category', categoryRoute)
 app.use('/api/v1/users', usersRoute)
+app.use('/api/v1/addCart', addCartsRoute)
 
 module.exports = app;

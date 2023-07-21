@@ -47,9 +47,9 @@ exports.getProducts = async (req, res, next) => {
 exports.getProductsById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(id)
+        // console.log(id)
         const product = await getProductByIdService(id)
-        console.log(product)
+        // console.log(product)
         res.status(200).json({
             status: 'success',
             data: product,
