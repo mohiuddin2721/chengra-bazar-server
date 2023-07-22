@@ -12,6 +12,7 @@ app.use('/images', express.static('images'));
 const productRoute = require('./routes/products.route');
 const categoryRoute = require('./routes/category.route');
 const usersRoute = require('./routes/users.route');
+const addCartsRoute = require('./routes/addCarts.route');
 
 app.get('/', (req, res) => {
   res.send('Chengra_Bazar route is working! YaY');
