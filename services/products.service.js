@@ -36,4 +36,9 @@ exports.updateProductsByIdService = async (productId, data) => {
     return result;
 }
 
+exports.deleteProductsByIdService = async (id) => {
+    const result = await Product.deleteOne({ _id: id })
+    return result;
+}
+
 // query = category, brand, price range, rating, sort- price
