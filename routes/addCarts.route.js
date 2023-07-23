@@ -6,8 +6,8 @@ router.route('/')
     .get(addCartsController.getAddCarts)
     .post(addCartsController.createAddCart)
 
-// router.route('/:id')
-//     .get(addCartsController.getProductsById)
+router.route('/:id')
+    .delete(addCartsController.deleteAddCartById)
 
 
 module.exports = router;
