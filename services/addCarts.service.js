@@ -11,6 +11,16 @@ exports.createAddCartsService = async (req) => {
     return addCartData;
 }
 
+exports.updateAddCartByIdService = async (productId, data) => {
+    console.log(data)
+    const result = await AddCart.updateOne(
+        { _id: productId },
+        { $set: data },
+        { runValidators: true }
+    );
+    return result;
+}
+
 exports.deleteAddCartsByIdService = async (id) => {
     const result = AddCart.deleteOne({ _id: id });
     return result;

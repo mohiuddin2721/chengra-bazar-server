@@ -1,7 +1,8 @@
 const {
     getAddCartsService,
     createAddCartsService,
-    deleteAddCartsByIdService
+    deleteAddCartsByIdService,
+    updateAddCartByIdService
 } = require("../services/addCarts.service")
 
 exports.getAddCarts = async (req, res, next) => {
@@ -39,12 +40,30 @@ exports.createAddCart = async (req, res, next) => {
     }
 }
 
+exports.updateAddCartById = async (req, res, next) => {
+    const { id } = req.params;
+    const result = await updateAddCartByIdService(id, req.body)
+    try {
+        res.status(200).json({
+            status: 'success',
+            message: 'Data updated successfully',
+            data: result,
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: `Failed to update data`,
+            error: error.message,
+        })
+    }
+}
+
 exports.deleteAddCartById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(id)
+        // console.log(id)
         const result = await deleteAddCartsByIdService(id)
-        console.log(result)
+        // console.log(result)
         res.status(200).json({
             status: 'success',
             message: 'Successfully deleted the data',

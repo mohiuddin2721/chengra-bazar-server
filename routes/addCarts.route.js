@@ -7,6 +7,7 @@ router.route('/')
     .post(addCartsController.createAddCart)
 
 router.route('/:id')
+    .patch(addCartsController.updateAddCartById)
     .delete(addCartsController.deleteAddCartById)
 
 
