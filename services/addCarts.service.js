@@ -12,12 +12,16 @@ exports.createAddCartsService = async (req) => {
 }
 
 exports.updateAddCartByIdService = async (productId, data) => {
-    console.log(data)
-    const result = await AddCart.updateOne(
-        { _id: productId },
-        { $set: data },
-        { runValidators: true }
-    );
+    // console.log(data)
+    // const result = await AddCart.updateOne(
+    //     { _id: productId },
+    //     { $set: data },
+    //     { runValidators: true }
+    // );
+
+    // another way to update data where doesn't need runValidator
+    const product = await AddCart.findById(productId);
+    const result = await product.set(data).save();
     return result;
 }
 

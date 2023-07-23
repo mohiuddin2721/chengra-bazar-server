@@ -90,11 +90,15 @@ exports.createProduct = async (req, res, next) => {
     }
 }
 
-// exports.fileUpload = async (req, res) => {
-//     try {
-//         res.status(200).json(req.files)
-//         console.log(req.files)
-//     } catch (error) {
-
-//     }
-// }
+exports.updateProductsById = async (req, res, next)=> {
+    try {
+        const {id}=req.params;
+        const result = await updateProductsByIdService(id, req.body)
+    } catch (error) {
+        res.status(400).json({
+            status: 'fail',
+            message: 'Could not updated the data',
+            error: error.message,
+        })
+    }
+}

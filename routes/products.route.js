@@ -12,6 +12,7 @@ router.route('/')
 
 router.route('/:id')
     .get(productController.getProductsById)
+    .patch(productController.updateProductsById)
 
 
 module.exports = router;

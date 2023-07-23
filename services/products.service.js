@@ -30,4 +30,10 @@ exports.createProductsService = async (data) => {
     return product;
 }
 
+exports.updateProductsByIdService = async (productId, data) => {
+    const product = await Product.findById(productId);
+    const result = await product.set(data).save();
+    return result;
+}
+
 // query = category, brand, price range, rating, sort- price
