@@ -41,9 +41,9 @@ exports.createAddCart = async (req, res, next) => {
 }
 
 exports.updateAddCartById = async (req, res, next) => {
-    const { id } = req.params;
-    const result = await updateAddCartByIdService(id, req.body)
     try {
+        const { id } = req.params;
+        const result = await updateAddCartByIdService(id, req.body)
         res.status(200).json({
             status: 'success',
             message: 'Data updated successfully',

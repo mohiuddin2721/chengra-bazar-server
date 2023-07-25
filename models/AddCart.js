@@ -45,6 +45,14 @@ const addCartSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    total: {
+        type: Number,
+        required: true,
+    },
+    shifting: {
+        type: Number,
+        required: true,
+    },
 }, {
     timestamps: true
 });

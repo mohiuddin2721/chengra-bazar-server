@@ -1,5 +1,5 @@
 const { match } = require("assert");
-const { getProductsService, createProductsService, getProductByIdService, updateProductsByIdService } = require("../services/products.service")
+const { getProductsService, createProductsService, getProductByIdService, updateProductsByIdService, deleteProductsByIdService } = require("../services/products.service")
 
 
 exports.getProducts = async (req, res, next) => {
@@ -94,6 +94,11 @@ exports.updateProductsById = async (req, res, next) => {
     try {
         const { id } = req.params;
         const result = await updateProductsByIdService(id, req.body)
+        res.status(200).json({
+            status: 'success',
+            message: "Product has been successfully Updated",
+            data: result,
+        })
     } catch (error) {
         res.status(400).json({
             status: 'fail',
@@ -107,7 +112,11 @@ exports.deleteProductsById = async (req, res, next) => {
     try {
         const { id } = req.params;
         const result = await deleteProductsByIdService(id)
-
+        res.status(200).json({
+            status: "Success",
+            message: "Product has been successfully deleted",
+            data: result,
+        })
     } catch (error) {
         res.status(400).json({
             status: "failed",

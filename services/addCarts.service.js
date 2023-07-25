@@ -21,7 +21,14 @@ exports.updateAddCartByIdService = async (productId, data) => {
 
     // another way to update data where doesn't need runValidator
     const product = await AddCart.findById(productId);
-    const result = await product.set(data).save();
+    const updatedProduct = {
+        quantityOrder: data.quantityOrder,
+        total: data.quantityOrder * data.price,
+        shifting: data.quantityOrder * 20,
+    };
+    // console.log("updatedProduct", updatedProduct)
+    const result = await product.set(updatedProduct).save();
+    // console.log("result", result)
     return result;
 }
 
