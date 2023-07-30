@@ -6,5 +6,8 @@ router.route('/')
     .get(shippingAddressController.getShippingAddressByEmail)
     .post(shippingAddressController.createShippingAddress)
 
+router.route('/:id')
+    .put(shippingAddressController.updateShippingAddressById)
+
 
 module.exports = router;
