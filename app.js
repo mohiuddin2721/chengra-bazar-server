@@ -23,6 +23,6 @@ app.use('/api/v1/products', productRoute)
 app.use('/api/v1/category', categoryRoute)
 app.use('/api/v1/users', usersRoute)
 app.use('/api/v1/addCart', addCartsRoute)
-app.use('/api/v1/shipping_address', shippingAddress)
+app.use('/api/v1/address', shippingAddress)
 
 module.exports = app;

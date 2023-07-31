@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const shippingAddressSchema = mongoose.Schema({
+const addressSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
     },
     phone: {
-        type: Number,
+        type: String,
         required: true,
     },
     country: {
@@ -37,6 +37,6 @@ const shippingAddressSchema = mongoose.Schema({
     timestamps: true
 })
 
-const ShippingAddress = mongoose.model('ShippingAddress', shippingAddressSchema)
+const Address = mongoose.model('Address', addressSchema)
 
-module.exports = ShippingAddress;
+module.exports = Address;

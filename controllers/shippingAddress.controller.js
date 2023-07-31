@@ -23,8 +23,9 @@ exports.getShippingAddressByEmail = async (req, res, next) => {
 
 exports.createShippingAddress = async (req, res, next) => {
     try {
+        // console.log(req)
         const result = await createShippingAddressService(req)
-        console.log(result)
+        // console.log("controller",result)
         res.status(200).json({
             status: 'success',
             message: 'Successfully data inserted',

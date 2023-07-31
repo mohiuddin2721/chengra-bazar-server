@@ -7,7 +7,7 @@ router.route('/')
     .post(shippingAddressController.createShippingAddress)
 
 router.route('/:id')
-    .put(shippingAddressController.updateShippingAddressById)
+    .patch(shippingAddressController.updateShippingAddressById)
 
 
 module.exports = router;
