@@ -1,31 +1,66 @@
 const mongoose = require('mongoose');
+const validator = require("validator");
+
+const bcrypt = require("bcrypt");
 
 // User schema design
 const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    validate: [validator.isEmail, "Provide a valid Email"],
+    trim: true,
+    unique: true,
+    required: [true, "Email address is required"]
+  },
+  password: {
+    type: String,
+    required: [true, 'Password is required'],
+    validate: {
+      validator: (value) =>
+        validator.isStrongPassword(value, {
+          minLength: 6,
+          minLowercase: 1,
+          minUppercase: 1,
+          minNumbers: 1,
+          minSymbols: 1,
+        }),
+      message: "Please provide stronger Password"
+    }
+  },
+  confirmPassword: {
+    type: String,
+    required: [true, 'Please confirm your password'],
+    validate: {
+      validator: function (value) {
+        return value === this.password;
+      },
+      message: "Password is not match"
+    }
+  },
+  role: {
+    type: String,
+    enum: ["buyer", "store-manager", "admin"],
+    default: "buyer",
+  },
   name: {
     type: String,
-    required: [true, 'Please provide your name'],
+    required: [true, "Please provide your name"],
     trim: true,
-    minLength: [4, 'Name must be at least 4 characters.'],
-    maxLength: [100, 'Name is too large. It must be within 100 characters'],
+    minLength: [5, "Name must be at least 5 characters."],
+    maxLength: [50, "Name cannot exceed more than 50 character."]
+  },
+  contactNumber: {
+    type: String,
+    validate: [validator.isMobilePhone, "Please provide a valid contact number"]
   },
   country: {
     type: String,
-    required: true,
     trim: true,
     minLength: [4, 'Name must be at least 4 characters.'],
     maxLength: [50, 'Name is too large. It must be within 50 characters'],
   },
-  email: {
+  imageUrl: {
     type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: [true, 'Type the password'],
-    minLength: [6, 'password must be at least 6 characters.'],
-    maxLength: [14, 'password is too large. It must be within 14 characters'],
   },
   age: {
     type: Number,
@@ -33,6 +68,17 @@ const userSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 });
+
+userSchema.pre("save", function (next) {
+  const password = this.password;
+
+  const hashedPassword = bcrypt.hashSync(password);
+
+  this.password = hashedPassword;
+  this.confirmPassword = undefined;
+
+  next();
+})
 
 const User = mongoose.model('User', userSchema);
 
