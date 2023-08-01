@@ -5,7 +5,8 @@ exports.getUsersService = async () => {
     return users;
 }
 
-exports.createUserService = async (data) => {
-    const user = await User.create(data);
+exports.createUserService = async (userInfo) => {
+    // console.log(userInfo)
+    const user = await User.create(userInfo);
     return user;
 }

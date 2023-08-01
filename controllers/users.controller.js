@@ -23,11 +23,11 @@ exports.createUser = async (req, res, next) => {
 
         res.status(200).json({
             status: 'success',
-            message: 'Successfully data of user inserted',
+            message: 'Successfully signed up',
             data: result,
         })
     } catch (error) {
-        res.status(400).json({
+        res.status(500).json({
             status: 'fail',
             message: 'Data of user is not inserted',
             error: error.message,
