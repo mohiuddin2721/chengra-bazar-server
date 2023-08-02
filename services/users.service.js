@@ -5,8 +5,15 @@ exports.getUsersService = async () => {
     return users;
 }
 
-exports.createUserService = async (userInfo) => {
-    // console.log(userInfo)
-    const user = await User.create(userInfo);
-    return user;
+exports.createUserService = async (req) => {
+    // console.log(req.body)
+    const user = req.body;
+    const query = { email: user.email }
+    const existingUser = await User.findOne(query)
+    if (existingUser) {
+        // console.log("existingUser", existingUser)
+        return res.send({ message: "user already exist" })
+    }
+    const result = await User.create(req.body);
+    return result;
 }

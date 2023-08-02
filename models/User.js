@@ -5,49 +5,54 @@ const bcrypt = require("bcrypt");
 
 // User schema design
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Please provide your name"],
+    trim: true,
+    minLength: [3, "Name must be at least 5 characters."],
+    maxLength: [50, "Name cannot exceed more than 50 character."]
+  },
   email: {
     type: String,
-    validate: [validator.isEmail, "Provide a valid Email"],
+    // validate: [validator.isEmail, "Provide a valid Email"],
     trim: true,
     unique: true,
     required: [true, "Email address is required"]
   },
-  password: {
-    type: String,
-    required: [true, 'Password is required'],
-    validate: {
-      validator: (value) =>
-        validator.isStrongPassword(value, {
-          minLength: 6,
-          minLowercase: 1,
-          minUppercase: 1,
-          minNumbers: 1,
-          minSymbols: 1,
-        }),
-      message: "Please provide stronger Password"
-    }
-  },
-  confirmPassword: {
-    type: String,
-    required: [true, 'Please confirm your password'],
-    validate: {
-      validator: function (value) {
-        return value === this.password;
-      },
-      message: "Password is not match"
-    }
-  },
+  // password: {
+  //   type: String,
+  //   required: [true, 'Password is required'],
+  //   validate: {
+  //     validator: (value) =>
+  //       validator.isStrongPassword(value, {
+  //         minLength: 6,
+  //         minLowercase: 1,
+  //         minUppercase: 1,
+  //         minNumbers: 1,
+  //         minSymbols: 1,
+  //       }),
+  //     message: "Please provide stronger Password"
+  //   }
+  // },
+  // confirmPassword: {
+  //   type: String,
+  //   required: [true, 'Please confirm your password'],
+  //   validate: {
+  //     validator: function (value) {
+  //       return value === this.password;
+  //     },
+  //     message: "Password is not match"
+  //   }
+  // },
   role: {
     type: String,
     enum: ["buyer", "store-manager", "admin"],
     default: "buyer",
   },
-  name: {
+  status: {
     type: String,
-    required: [true, "Please provide your name"],
-    trim: true,
-    minLength: [5, "Name must be at least 5 characters."],
-    maxLength: [50, "Name cannot exceed more than 50 character."]
+    enum: ["active", "inactive", "block"],
+    default: "active",
   },
   contactNumber: {
     type: String,
@@ -69,16 +74,16 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-userSchema.pre("save", function (next) {
-  const password = this.password;
+// userSchema.pre("save", function (next) {
+//   const password = this.password;
 
-  const hashedPassword = bcrypt.hashSync(password);
+//   const hashedPassword = bcrypt.hashSync(password);
 
-  this.password = hashedPassword;
-  this.confirmPassword = undefined;
+//   this.password = hashedPassword;
+//   this.confirmPassword = undefined;
 
-  next();
-})
+// next();
+// })
 
 const User = mongoose.model('User', userSchema);
 

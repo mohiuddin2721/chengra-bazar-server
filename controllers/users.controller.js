@@ -19,8 +19,7 @@ exports.getUser = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
     try {
-        const result = await createUserService(req.body)
-
+        const result = await createUserService(req)
         res.status(200).json({
             status: 'success',
             message: 'Successfully signed up',
