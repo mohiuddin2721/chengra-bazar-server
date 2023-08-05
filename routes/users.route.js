@@ -6,4 +6,8 @@ router.route('/')
     .get(userController.getUser)
     .post(userController.createUser)
 
+router.route('/:id')
+    .patch(userController.updateUserRoleById)
+    .delete(userController.removeUserById);
+
 module.exports = router;
