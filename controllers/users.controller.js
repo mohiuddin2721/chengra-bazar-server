@@ -1,4 +1,10 @@
-const { getUsersService, createUserService, updateUserRoleByIdService, removeUserByIdService } = require("../services/users.service")
+const {
+    getUsersService,
+    createUserService,
+    updateUserRoleByIdService,
+    removeUserByIdService,
+    getAdminUserService,
+} = require("../services/users.service")
 const { generateToken } = require("../utils/token")
 
 exports.getUser = async (req, res, next) => {
@@ -82,6 +88,23 @@ exports.getJwt = async (req, res, next) => {
         res.status(500).json({
             status: "fail",
             message: error,
+        })
+    }
+}
+
+exports.getAdminUser = async (req, res, next) => {
+    try {
+        const result = await getAdminUserService(req)
+        console.log(result)
+        res.status(200).json({
+            status: "success",
+            message: "varied admin",
+            data: result
+        })
+    } catch (error) {
+        res.status(401).json({
+            status: 'fail',
+            message: 'forbidden access'
         })
     }
 }

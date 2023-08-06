@@ -32,3 +32,12 @@ exports.removeUserByIdService = async (userId) => {
     return result;
 }
 
+exports.getAdminUserService = async (req) => {
+    const email = req.params.email;
+    const query = { email: email };
+    const user = await User.findOne(query)
+    const result = { admin: user?.role === "admin" }
+    // console.log(result)
+    return result;
+}
+
