@@ -27,7 +27,8 @@ exports.updateUserRoleByIdService = async (userId, body) => {
 }
 
 exports.removeUserByIdService = async (userId) => {
-    console.log("userId:", userId)
+    // console.log("userId:", userId)
     const result = await User.deleteOne({ _id: userId });
     return result;
 }
+

@@ -1,4 +1,5 @@
 const { getUsersService, createUserService, updateUserRoleByIdService, removeUserByIdService } = require("../services/users.service")
+const { generateToken } = require("../utils/token")
 
 exports.getUser = async (req, res, next) => {
     try {
@@ -19,11 +20,16 @@ exports.getUser = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
     try {
+        const token = generateToken(req.body)
+        // console.log("token from controller: ", token)
         const result = await createUserService(req)
         res.status(200).json({
             status: 'success',
             message: 'Successfully signed up',
-            data: result,
+            data: {
+                result,
+                token,
+            },
         })
     } catch (error) {
         res.status(500).json({
@@ -69,3 +75,7 @@ exports.removeUserById = async (req, res, next) => {
         })
     }
 }
+
+// exports.getJwt = async (req, res, next) => {
+
+// }
