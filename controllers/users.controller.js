@@ -20,16 +20,13 @@ exports.getUser = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
     try {
-        const token = generateToken(req.body)
-        // console.log("token from controller: ", token)
+        // console.log(req)
         const result = await createUserService(req)
+        // console.log("result from controller: ", result)
         res.status(200).json({
             status: 'success',
             message: 'Successfully signed up',
-            data: {
-                result,
-                token,
-            },
+            data: result,
         })
     } catch (error) {
         res.status(500).json({
@@ -76,6 +73,15 @@ exports.removeUserById = async (req, res, next) => {
     }
 }
 
-// exports.getJwt = async (req, res, next) => {
-
-// }
+exports.getJwt = async (req, res, next) => {
+    try {
+        const token = generateToken(req.body)
+        // console.log("token from user controller",token)
+        res.send({ token })
+    } catch (error) {
+        res.status(500).json({
+            status: "fail",
+            message: error,
+        })
+    }
+}

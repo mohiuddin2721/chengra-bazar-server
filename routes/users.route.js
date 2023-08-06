@@ -4,14 +4,13 @@ const userController = require('../controllers/users.controller');
 const verifyToken = require('../middleware/verifyToken');
 
 router.route('/')
-    .get(userController.getUser)
+    .get(verifyToken ,userController.getUser)
     .post(userController.createUser)
 
 router.route('/:id')
     .patch(userController.updateUserRoleById)
     .delete(userController.removeUserById);
 
-// router.route('/')
-//     .get('/jwt', verifyToken, userController.getJwt)
+router.post('/jwt', userController.getJwt)
 
 module.exports = router;
