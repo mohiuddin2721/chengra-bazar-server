@@ -2,6 +2,7 @@ const User = require("../models/User");
 
 exports.getUsersService = async () => {
     const users = await User.find();
+    console.log('users', users)
     return users;
 }
 
@@ -35,25 +36,22 @@ exports.removeUserByIdService = async (userId) => {
 
 exports.getAdminUserService = async (req) => {
     const email = req.params.email;
-    console.log("email", email)
+    // console.log("email", email)
     const query = { email: email };
-    console.log("query", query)
+    // console.log("query", query)
     const user = await User.findOne(query)
-    console.log("userRole", user?.role)
+    // console.log("userRole", user?.role)
     const result = { admin: user?.role === "admin" }
     // console.log(result)
     return result;
 }
 
 exports.getStoreManagerUserService = async (email) => {
-    // const email = req.params.email;
-    // console.log("email", email)
     const query = { email: email };
-    console.log("query", query);
+    // console.log("query", query);
     const user = await User.findOne(query);
-    console.log("user", user)
-    const result = { 'store-manager': user?.role === "store-manager" };
-    
-    console.log(result);
+    // console.log("user", user)
+    const result = { storeManager: user?.role === "store-manager" };
+    // console.log(result);
     return result;
 };

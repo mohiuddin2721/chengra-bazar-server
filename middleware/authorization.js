@@ -1,11 +1,21 @@
+const User = require("../models/User");
+
 module.exports = (...role) => {
 
-    return (req, res, next) => {
-        const userRole = req.user.role;
+    return async (req, res, next) => {
+        const email = req.user.email;
+        // console.log(email)
+        const query = { email: email }
+        const user = await User.findOne(query)
+        // console.log(user)
+        const userRole = user?.role;
+        // console.log(userRole)
+        // console.log(role)
+
         if (!role.includes(userRole)) {
             return res.status(403).json({
                 status: "fail",
-                error: "you are not authorized to access this"
+                error: "you are not authorized"
             });
         }
 

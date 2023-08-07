@@ -96,7 +96,7 @@ exports.getJwt = async (req, res, next) => {
 exports.getAdminUser = async (req, res, next) => {
     try {
         const result = await getAdminUserService(req)
-        console.log("adminCheck",result)
+        // console.log("adminCheck",result)
         res.status(200).json({
             status: "success",
             message: "varied admin",
@@ -113,7 +113,7 @@ exports.getAdminUser = async (req, res, next) => {
 exports.getStoreManagerUser = async (req, res, next) => {
     try {
         const result = await getStoreManagerUserService(req.params.email)
-        console.log("adminCheck",result)
+        // console.log("adminCheck",result)
         res.status(200).json({
             status: "success",
             message: "varied store manager",
