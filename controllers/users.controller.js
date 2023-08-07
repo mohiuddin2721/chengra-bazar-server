@@ -4,6 +4,7 @@ const {
     updateUserRoleByIdService,
     removeUserByIdService,
     getAdminUserService,
+    getStoreManagerUserService,
 } = require("../services/users.service")
 const { generateToken } = require("../utils/token")
 
@@ -95,10 +96,27 @@ exports.getJwt = async (req, res, next) => {
 exports.getAdminUser = async (req, res, next) => {
     try {
         const result = await getAdminUserService(req)
-        console.log(result)
+        console.log("adminCheck",result)
         res.status(200).json({
             status: "success",
             message: "varied admin",
+            data: result
+        })
+    } catch (error) {
+        res.status(401).json({
+            status: 'fail',
+            message: 'forbidden access'
+        })
+    }
+}
+
+exports.getStoreManagerUser = async (req, res, next) => {
+    try {
+        const result = await getStoreManagerUserService(req.params.email)
+        console.log("adminCheck",result)
+        res.status(200).json({
+            status: "success",
+            message: "varied store manager",
             data: result
         })
     } catch (error) {

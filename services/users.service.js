@@ -9,9 +9,10 @@ exports.createUserService = async (req) => {
     // console.log(req.body)
     const user = req.body;
     const query = { email: user.email }
+    console.log("query from create user", query)
     const existingUser = await User.findOne(query)
     if (existingUser) {
-        // console.log("existingUser", existingUser)
+        // console.log("existingUser", existingUser.role)
         return res.send({ message: "user already exist" })
     }
     const result = await User.create(req.body);
@@ -34,10 +35,25 @@ exports.removeUserByIdService = async (userId) => {
 
 exports.getAdminUserService = async (req) => {
     const email = req.params.email;
+    console.log("email", email)
     const query = { email: email };
+    console.log("query", query)
     const user = await User.findOne(query)
+    console.log("userRole", user?.role)
     const result = { admin: user?.role === "admin" }
     // console.log(result)
     return result;
 }
 
+exports.getStoreManagerUserService = async (email) => {
+    // const email = req.params.email;
+    // console.log("email", email)
+    const query = { email: email };
+    console.log("query", query);
+    const user = await User.findOne(query);
+    console.log("user", user)
+    const result = { 'store-manager': user?.role === "store-manager" };
+    
+    console.log(result);
+    return result;
+};

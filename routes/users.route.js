@@ -13,5 +13,6 @@ router.route('/:id')
 
 router.post('/jwt', userController.getJwt)
 router.get('/admin/:email', verifyToken, userController.getAdminUser)
+router.get('/storeManager/:email', verifyToken, userController.getStoreManagerUser)
 
 module.exports = router;
