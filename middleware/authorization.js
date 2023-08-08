@@ -10,7 +10,6 @@ module.exports = (...role) => {
         // console.log(user)
         const userRole = user?.role;
         // console.log(userRole)
-        // console.log(role)
 
         if (!role.includes(userRole)) {
             return res.status(403).json({
