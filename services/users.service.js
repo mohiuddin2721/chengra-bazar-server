@@ -2,7 +2,7 @@ const User = require("../models/User");
 
 exports.getUsersService = async () => {
     const users = await User.find();
-    console.log('users', users)
+    // console.log('users', users)
     return users;
 }
 
@@ -10,7 +10,7 @@ exports.createUserService = async (req) => {
     // console.log(req.body)
     const user = req.body;
     const query = { email: user.email }
-    console.log("query from create user", query)
+    // console.log("query from create user", query)
     const existingUser = await User.findOne(query)
     if (existingUser) {
         // console.log("existingUser", existingUser.role)

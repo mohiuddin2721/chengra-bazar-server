@@ -5,6 +5,7 @@ exports.postPayment = async (req, res, next) => {
     try {
         const { price } = req.body;
         const amount = price * 100;
+        console.log('price:', price, "amount: ", amount)
         const paymentIntent = await stripe.paymentIntents.create({
             amount: amount,
             currency: "usd",

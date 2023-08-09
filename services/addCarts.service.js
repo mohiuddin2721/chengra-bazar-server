@@ -24,7 +24,7 @@ exports.updateAddCartByIdService = async (productId, data) => {
     const updatedProduct = {
         quantityOrder: data.quantityOrder,
         total: data.quantityOrder * data.price,
-        shifting: data.quantityOrder * 20,
+        shifting: data.quantityOrder * 5,
     };
     // console.log("updatedProduct", updatedProduct)
     const result = await product.set(updatedProduct).save();

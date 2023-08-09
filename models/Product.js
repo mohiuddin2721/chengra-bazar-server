@@ -19,6 +19,10 @@ const productSchema = mongoose.Schema({
     required: true,
     min: [0, "Price can't be negative."],
   },
+  prePrice: {
+    type: Number,
+    min: [0, "Price can't be negative."],
+  },
   imageURL: [{
     type: [String],
     // type: Array,
