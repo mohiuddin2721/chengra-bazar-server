@@ -4,8 +4,7 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 exports.postPaymentData = async (req, res, next) => {
     try {
-        const cart = req.body.cart;
-        const result = await postPaymentDataService(cart)
+        const result = await postPaymentDataService(req)
         // console.log('controller', result)
         res.status(200).json({
             status: 'success',
@@ -26,6 +25,13 @@ exports.postPaymentData = async (req, res, next) => {
 exports.postPayment = async (req, res, next) => {
     try {
         const { price } = req.body;
+
+        if (isNaN(price)) {
+            return res.status(400).json({
+                status: 'fail',
+                message: 'Invalid price value',
+            });
+        }
         const amount = parseInt(price * 100);
         console.log('price:', price, "amount: ", amount)
         const paymentIntent = await stripe.paymentIntents.create({
