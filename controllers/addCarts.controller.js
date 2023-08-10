@@ -25,7 +25,7 @@ exports.getAddCarts = async (req, res, next) => {
 exports.createAddCart = async (req, res, next) => {
     try {
         const result = await createAddCartsService(req)
-        console.log(result)
+        // console.log(result)
         res.status(200).json({
             status: 'success',
             message: 'Successfully data inserted',

@@ -1,41 +1,42 @@
 const mongoose = require('mongoose');
- 
+
 const paymentSchema = mongoose.Schema({
-    selectedId: {
+    email: {
         type: String,
         required: true,
     },
-    name: {
+    transactionId: {
         type: String,
         required: true,
     },
-    price: {
+    totalPrice: {
         type: Number,
         required: true,
     },
-    selectedProductImg: {
-        type: String,
+    quantity: {
+        type: Number,
         required: true,
     },
-    quantityOrder: {
+    item: {
         type: Number,
+        required: true,
+    },
+    itemNames: {
+        type: [String],
+        required: true,
+    },
+    itemImages: {
+        type: [String],
+        required: true,
+    },
+    itemPrices: {
+        type: [Number],
         required: true,
     },
     status: {
         type: String,
-        required: true,
-    },
-    userEmail: {
-        type: String,
-        required: true,
-    },
-    total: {
-        type: Number,
-        required: true,
-    },
-    shifting: {
-        type: Number,
-        required: true,
+        enum: ["pending", "courier", "shipped"],
+        default: "pending",
     },
 }, {
     timestamps: true
