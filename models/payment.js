@@ -21,6 +21,10 @@ const paymentSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    itemId: {
+        type: [String],
+        required: true,
+    },
     itemNames: {
         type: [String],
         required: true,

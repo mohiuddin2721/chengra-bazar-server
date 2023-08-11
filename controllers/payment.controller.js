@@ -18,8 +18,6 @@ exports.postPaymentData = async (req, res, next) => {
             error: error.message,
         })
     }
-
-
 }
 
 exports.postPayment = async (req, res, next) => {
