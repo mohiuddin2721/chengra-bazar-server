@@ -2,6 +2,7 @@ const {
     postPaymentDataService,
     getAllPaymentDataService,
     getPaymentDataByEmailService,
+    updatePaymentDataStatusService,
 } = require("../services/payment.service");
 
 const stripe = require("stripe")(process.env.STRIPE_KEY);
@@ -71,7 +72,7 @@ exports.getAllPaymentData = async (req, res, next) => {
 
 exports.getPaymentDataByEmail = async (req, res, next) => {
     try {
-        console.log(req.query)
+        // console.log(req.query)
         const result = await getPaymentDataByEmailService(req.query)
         res.status(200).json({
             status: 'success',
@@ -84,5 +85,22 @@ exports.getPaymentDataByEmail = async (req, res, next) => {
             message: 'No Payment Data Found',
             error: error.message,
         })
+    }
+}
+
+exports.updatePaymentDataStatus = async (req, res, next) => {
+    try {
+        const result = await updatePaymentDataStatusService(req)
+        res.status(200).json({
+            status: 'success',
+            message: "successfully changed the order status",
+            data:result,
+        })
+    } catch (error) {
+       res.status(401).json({
+        status:'fail',
+        message:'unauthorized access',
+        error : error.message,
+       }) 
     }
 }
