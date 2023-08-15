@@ -1,4 +1,8 @@
-const { postPaymentDataService } = require("../services/payment.service");
+const {
+    postPaymentDataService,
+    getAllPaymentDataService,
+    getPaymentDataByEmailService,
+} = require("../services/payment.service");
 
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
@@ -44,6 +48,41 @@ exports.postPayment = async (req, res, next) => {
         res.status(500).json({
             status: "fail",
             message: error,
+        })
+    }
+}
+
+exports.getAllPaymentData = async (req, res, next) => {
+    try {
+        const result = await getAllPaymentDataService()
+        res.status(200).json({
+            status: 'success',
+            message: `All Payment Data getting`,
+            data: result,
+        })
+    } catch (error) {
+        res.status(403).json({
+            status: 'fail',
+            message: 'No Payment Data Found',
+            error: error.message,
+        })
+    }
+}
+
+exports.getPaymentDataByEmail = async (req, res, next) => {
+    try {
+        console.log(req.query)
+        const result = await getPaymentDataByEmailService(req.query)
+        res.status(200).json({
+            status: 'success',
+            message: `Payments Data Getting success`,
+            data: result,
+        })
+    } catch (error) {
+        res.status(401).json({
+            status: 'fail',
+            message: 'No Payment Data Found',
+            error: error.message,
         })
     }
 }

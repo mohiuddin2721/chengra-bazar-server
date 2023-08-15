@@ -11,3 +11,14 @@ exports.postPaymentDataService = async (req) => {
     // console.log("result service:", result)
     return { result, deletedCart };
 }
+
+exports.getAllPaymentDataService = async () => {
+    const res = await Payment.find()
+    return res;
+}
+
+exports.getPaymentDataByEmailService = async (query) => {
+    // const email = query;
+    const res = await Payment.find(query)
+    return res;
+}
