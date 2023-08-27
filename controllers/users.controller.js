@@ -5,6 +5,7 @@ const {
     removeUserByIdService,
     getAdminUserService,
     getStoreManagerUserService,
+    userRollService,
 } = require("../services/users.service")
 const { generateToken } = require("../utils/token")
 
@@ -123,6 +124,24 @@ exports.getStoreManagerUser = async (req, res, next) => {
         res.status(401).json({
             status: 'fail',
             message: 'forbidden access'
+        })
+    }
+}
+
+exports.getUserRoll = async (req, res, next) => {
+    try {
+        const email = req.query.email;
+        // console.log(email)
+        const result = await userRollService(email)
+        res.status(200).json({
+            status: "success",
+            message: "user roll find",
+            data: result,
+        })
+    } catch (error) {
+        res.status(401).json({
+            status: 'fail',
+            message: "didn't find user roll"
         })
     }
 }

@@ -24,7 +24,7 @@ exports.getPaymentDataByEmailService = async (query) => {
 }
 
 exports.updatePaymentDataStatusService = async (req) => {
-    // console.log(req.params)
+    console.log(req.body)
     const { id } = req.params;
     const selectedData = await Payment.findById({ _id: id })
     const result = await selectedData.set(req.body).save()

@@ -55,3 +55,11 @@ exports.getStoreManagerUserService = async (email) => {
     // console.log(result);
     return result;
 };
+
+exports.userRollService = async (email) => {
+    const query = { email: email };
+    const user = await User.findOne(query)
+    const result = user.role;
+    // console.log("userRoll:",result)
+    return result;
+}

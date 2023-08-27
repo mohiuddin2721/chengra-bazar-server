@@ -13,6 +13,7 @@ router.route('/:id')
     .delete(userController.removeUserById);
 
 router.post('/jwt', userController.getJwt)
+router.get('/roll', userController.getUserRoll)
 router.get('/admin/:email', verifyToken, userController.getAdminUser)
 router.get('/storeManager/:email', verifyToken, userController.getStoreManagerUser)
 

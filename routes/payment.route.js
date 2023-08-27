@@ -8,7 +8,7 @@ router.route('/')
     .get(verifyToken, paymentController.getAllPaymentData)
     .post(verifyToken, paymentController.postPaymentData)
 
-router.patch("/:id", paymentController.updatePaymentDataStatus)
+router.patch("/:id",verifyToken, paymentController.updatePaymentDataStatus)
 router.get('/email', verifyToken, paymentController.getPaymentDataByEmail)
 router.post('/create-payment-intent', verifyToken, paymentController.postPayment)
 

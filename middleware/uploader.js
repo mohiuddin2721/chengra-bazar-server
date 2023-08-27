@@ -22,7 +22,7 @@ const uploader = multer({
         }
     },
     limits: {
-        fileSize: 2000000, //uploaded image size not more than 2mbps
+        fileSize: 2000000,
     }
 })
 module.exports = uploader;
