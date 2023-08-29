@@ -51,7 +51,7 @@ exports.getStoreManagerUserService = async (email) => {
     // console.log("query", query);
     const user = await User.findOne(query);
     // console.log("user", user)
-    const result = { storeManager: user?.role === "store-manager" };
+    const result = { storeManager: user?.role === "storeManager" };
     // console.log(result);
     return result;
 };
