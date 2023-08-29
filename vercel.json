@@ -3,13 +3,13 @@
     "builds": [
         {
             "src": "./server.js",
-            "use": "@vercel/node"
+            "use": "@now/node"
         }
     ],
     "routes": [
         {
             "src": "/api/v1/products",
-            "dest": "/server.js",
+            "dest": "./server.js",
             "methods": [
                 "GET",
                 "POST",
@@ -21,7 +21,7 @@
         },
         {
             "src": "/api/v1/category",
-            "dest": "/server.js",
+            "dest": "./server.js",
             "methods": [
                 "GET",
                 "POST",
@@ -33,7 +33,7 @@
         },
         {
             "src": "/api/v1/users",
-            "dest": "/server.js",
+            "dest": "./server.js",
             "methods": [
                 "GET",
                 "POST",
@@ -45,7 +45,7 @@
         },
         {
             "src": "/api/v1/addCart",
-            "dest": "/server.js",
+            "dest": "./server.js",
             "methods": [
                 "GET",
                 "POST",
@@ -57,7 +57,7 @@
         },
         {
             "src": "/api/v1/address",
-            "dest": "/server.js",
+            "dest": "./server.js",
             "methods": [
                 "GET",
                 "POST",
@@ -69,7 +69,7 @@
         },
         {
             "src": "/api/v1/payment",
-            "dest": "/server.js",
+            "dest": "./server.js",
             "methods": [
                 "GET",
                 "POST",
