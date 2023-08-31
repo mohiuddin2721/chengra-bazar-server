@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "music-album",
+    "name": "chengra-bazar-server",
     "builds": [
        { "src": "server.js", "use": "@vercel/node" }
     ],
