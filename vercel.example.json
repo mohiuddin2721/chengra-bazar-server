@@ -1,0 +1,47 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "/server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/v1/products",
+            "dest": "./server.js"
+        },
+        {
+            "src": "/api/v1/category",
+            "dest": "/server.js"
+        },
+        {
+            "src": "/api/v1/users",
+            "dest": "/server.js"
+        },
+        {
+            "src": "/api/v1/addCart",
+            "dest": "/server.js"
+        },
+        {
+            "src": "/api/v1/address",
+            "dest": "/server.js"
+        },
+        {
+            "src": "/api/v1/payment",
+            "dest": "/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "OPTIONS"
+            ]
+        }
+    ]
+}
