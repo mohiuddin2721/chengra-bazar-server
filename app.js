@@ -1,9 +1,6 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv').config();
-const colors = require('colors');
 
 // middleware
 app.use(cors());
@@ -31,15 +28,4 @@ app.get('/', (req, res) => {
   res.send('Chengra_Bazar route is working! YaY');
 });
 
-const port = process.env.PORT || 8080;
-
-// database connection
-mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
-  console.log(`Database connection is successful`.red.bold);
-});
-
-app.listen(port, () => {
-  console.log(`Chengra Bazar is running on port ${port}`.yellow.bold)
-})
-
-// module.exports = app;
+module.exports = app;
