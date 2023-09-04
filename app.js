@@ -6,7 +6,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 // Add this code to serve static files
-app.use('/images', express.static('images'));
+// app.use('/images', express.static('images'));
 
 // route
 const productRoute = require('./routes/products.route');
