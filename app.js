@@ -27,6 +27,7 @@ app.use('/api/v1/payment', paymentRoute)
 
 app.get("/products", async (req, res) => {
   const product = await Product.find()
+  console.log(product)
   res.send(product)
 })
 
