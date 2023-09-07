@@ -19,10 +19,13 @@ exports.getProductByIdService = async (id) => {
 }
 
 exports.createProductsService = async (data) => {
-    const productData = {
-        ...data.body,
-        imageURL: await data.files?.map(file => file.path),
-    };
+    console.log("data", data);
+    const productData = data.body;
+    // const productData = {
+    //     ...data.body,
+    //     imageURL: await data.files?.map(file => file.path),
+    // };
+    console.log("productData", productData)
     const product = await Product.create(productData);
     // console.log("product", product)
     // console.log("data.files", data.files)
