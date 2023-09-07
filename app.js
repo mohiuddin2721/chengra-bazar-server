@@ -25,10 +25,10 @@ app.use('/api/v1/addCart', addCartsRoute)
 app.use('/api/v1/address', shippingAddress)
 app.use('/api/v1/payment', paymentRoute)
 
-// app.get("/products", async (req, res) => {
-//   const product = await Product.find()
-//   res.send(product)
-// })
+app.get("/products", async (req, res) => {
+  const product = await Product.find()
+  res.send(product)
+})
 
 app.get('/', (req, res) => {
   res.send('Chengra_Bazar route is working! YaY');
