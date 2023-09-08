@@ -1,3 +1,4 @@
+const { createCommentService, getCommentService } = require("../services/comments.service");
 
 exports.createComment = async (req, res, next) => {
     try {
@@ -15,10 +16,19 @@ exports.createComment = async (req, res, next) => {
         })
     }
 }
+
 exports.getComment = async (req, res, next) => {
     try {
-
+        const result = await getCommentService(req);
+        res.status(200).json({
+            status: 'success',
+            message: 'get data successfully',
+            data: result,
+        })
     } catch (error) {
-
+        res.status(400).json({
+            status: "fail",
+            error: error.message,
+        })
     }
 }
