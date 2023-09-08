@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const commentsController = require("../controllers/comments.controller")
 
 
-router.route('/').post()
+router.route('/')
+    .get(commentsController.getComment)
+    .post(commentsController.createComment)

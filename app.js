@@ -15,6 +15,7 @@ const usersRoute = require('./routes/users.route');
 const addCartsRoute = require('./routes/addCarts.route');
 const shippingAddress = require('./routes/shippingAddress.route');
 const paymentRoute = require('./routes/payment.route');
+const commentsRoute = require('./routes/comments.route');
 
 app.use('/api/v1/products', productRoute)
 app.use('/api/v1/category', categoryRoute)
@@ -22,7 +23,7 @@ app.use('/api/v1/users', usersRoute)
 app.use('/api/v1/addCart', addCartsRoute)
 app.use('/api/v1/address', shippingAddress)
 app.use('/api/v1/payment', paymentRoute)
-app.use('/api/v1/comments_hub', paymentRoute)
+app.use('/api/v1/comments_hub', commentsRoute)
 
 app.get('/', (req, res) => {
   res.send('Chengra_Bazar route is working! YaY');
