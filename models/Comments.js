@@ -19,8 +19,13 @@ const commentSchema = mongoose.Schema({
     },
     review: {
         type: String,
+        required: true,
         minLength: [4, "Your comment must be at least 4 characters"],
         maxLength: [250, "Too large comment, keep it within 200 characters"],
+    },
+    userPhoto: {
+        type: String,
+        required: true
     },
 }, {
     timestamps: true
