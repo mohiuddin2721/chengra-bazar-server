@@ -19,7 +19,8 @@ exports.createComment = async (req, res, next) => {
 
 exports.getComment = async (req, res, next) => {
     try {
-        const result = await getCommentService(req);
+        const id = req.query.productId;
+        const result = await getCommentService(id);
         res.status(200).json({
             status: 'success',
             message: 'get data successfully',
